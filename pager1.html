@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Модели мотоциклов | Lite Endyro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+            --dark-color: #2b2d42;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        /* Header styles with animation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeInDown 0.5s ease-out;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        /* Navigation styles with animation */
+        .horizontal-menu {
+            list-style-type: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .horizontal-menu li {
+            position: relative;
+        }
+        
+        .horizontal-menu li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .horizontal-menu li a:hover {
+            color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        .horizontal-menu li a.active {
+            color: white;
+            background-color: var(--primary-color);
+        }
+        
+        .horizontal-menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+        
+        .horizontal-menu li a:hover::after {
+            width: 80%;
+        }
+        
+        /* Main content with animation */
+        main {
+            margin-top: 100px;
+            padding: 2rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+        
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+            font-family: 'Roboto Condensed', sans-serif;
+            text-transform: uppercase;
+            animation: slideInUp 0.6s ease-out;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .page-header p {
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+        
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary-color);
+            animation: expandWidth 0.8s ease-out 0.5s both;
+        }
+        
+        @keyframes expandWidth {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100px;
+            }
+        }
+        
+        /* Brand filter with animation */
+        .brand-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            background: white;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            transform: scale(1);
+            animation: popIn 0.4s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        @keyframes popIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            80% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .filter-btn:nth-child(1) { animation-delay: 0.1s; }
+        .filter-btn:nth-child(2) { animation-delay: 0.2s; }
+        .filter-btn:nth-child(3) { animation-delay: 0.3s; }
+        .filter-btn:nth-child(4) { animation-delay: 0.4s; }
+        
+        .filter-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        /* Motorcycle grid with animations */
+        .brands-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .brand-section {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        .brand-section:nth-child(1) { animation-delay: 0.3s; }
+        .brand-section:nth-child(2) { animation-delay: 0.4s; }
+        .brand-section:nth-child(3) { animation-delay: 0.5s; }
+        
+        .brand-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .brand-title:hover {
+            color: var(--primary-color);
+            transform: scale(1.02);
+        }
+        
+        .model-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+            height: 100%;
+        }
+        
+        .model-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .model-image {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            background: #f5f5f5;
+            padding: 1rem;
+            transition: var(--transition);
+        }
+        
+        .model-card:hover .model-image {
+            transform: scale(1.03);
+        }
+        
+        .model-info {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .model-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .model-card:hover .model-info h3 {
+            color: var(--primary-color);
+        }
+        
+        .model-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            justify-content: center;
+        }
+        
+        .spec-item {
+            background: rgba(67, 97, 238, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .model-card:hover .spec-item {
+            background: rgba(67, 97, 238, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            .horizontal-menu {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .brands-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .brand-section {
+                min-width: 100%;
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">LITE<span>ENDYRO</span></a>
+        <nav>
+            <ul class="horizontal-menu">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="pager1.html" class="active">Модели</a></li>
+                <li><a href="pager11.html">Помощь</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1>Наши модели</h1>
+            <p>Найди мотоцикл своей мечты</p>
+        </div>
+        
+        <div class="brand-filter">
+            <button class="filter-btn active">Все</button>
+            <button class="filter-btn">Kayo</button>
+            <button class="filter-btn">GR</button>
+            <button class="filter-btn">BRZ</button>
+        </div>
+        
+        <!-- Обёртка для брендов в строку -->
+        <div class="brands-container">
+            <div class="brand-section">
+                <h2 class="brand-title">Kayo</h2>
+                <a href="pager2.html" class="model-card">
+                    <img src="img/kayo.png" alt="Kayo Motorcycles" class="model-image">
+                    <div class="model-info">
+                        <h3>Линейка Kayo</h3>
+                        <div class="model-specs">
+                            <span class="spec-item">Эндуро</span>
+                            <span class="spec-item">Мотокросс</span>
+                            <span class="spec-item">250-450cc</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="brand-section">
+                <h2 class="brand-title">GR</h2>
+                <a href="pager10.html" class="model-card">
+                    <img src="img/gr.png" alt="GasGas Motorcycles" class="model-image">
+                    <div class="model-info">
+                        <h3>Линейка GR</h3>
+                        <div class="model-specs">
+                            <span class="spec-item">Эндуро</span>
+                            <span class="spec-item">Триал</span>
+                            <span class="spec-item">250-450cc</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="brand-section">
+                <h2 class="brand-title">BRZ</h2>
+                <a href="pager20.html" class="model-card">
+                    <img src="img/brz.png" alt="Beta Motorcycles" class="model-image">
+                    <div class="model-info">
+                        <h3>Линейка BRZ</h3>
+                        <div class="model-specs">
+                            <span class="spec-item">Эндуро</span>
+                            <span class="spec-item">Триал</span>
+                            <span class="spec-item">250-450cc</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Add active class to current nav item
+        const navLinks = document.querySelectorAll('.horizontal-menu li a');
+        navLinks.forEach(link => {
+            if (link.href === window.location.href) {
+                link.classList.add('active');
+            }
+        });
+        
+        // Brand filter functionality with animation
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const brandSections = document.querySelectorAll('.brand-section');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Animation for button click
+                btn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    btn.style.transform = 'scale(1.05)';
+                }, 100);
+                setTimeout(() => {
+                    btn.style.transform = 'scale(1)';
+                }, 200);
+                
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.textContent;
+                
+                brandSections.forEach(section => {
+                    if (filter === 'Все' || section.querySelector('.brand-title').textContent.includes(filter)) {
+                        section.style.display = 'block';
+                        // Add animation for showing
+                        section.style.animation = 'fadeInUp 0.5s ease-out';
+                    } else {
+                        // Add animation for hiding
+                        section.style.animation = 'fadeOut 0.3s ease-out';
+                        setTimeout(() => {
+                            section.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Add fadeOut animation dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                from { opacity: 1; transform: translateY(0); }
+                to { opacity: 0; transform: translateY(20px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

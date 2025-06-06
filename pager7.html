@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayo K6R | Lite Endyro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+            --dark-color: #2b2d42;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --danger-color: #f44336;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        /* Navigation styles */
+        .horizontal-menu {
+            list-style-type: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .horizontal-menu li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .horizontal-menu li a:hover {
+            color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        .horizontal-menu li a.active {
+            color: white;
+            background-color: var(--primary-color);
+        }
+        
+        /* Main content */
+        main {
+            margin-top: 100px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .model-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            align-items: center;
+        }
+        
+        .model-gallery {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .model-gallery img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .model-header {
+            padding: 1rem;
+        }
+        
+        .model-title {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .model-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: var(--primary-color);
+        }
+        
+        .model-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .model-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .highlight-item {
+            background: rgba(67, 97, 238, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .highlight-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(67, 97, 238, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .highlight-text h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+            color: var(--dark-color);
+        }
+        
+        .highlight-text p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Specifications section */
+        .specs-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .specs-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .specs-table th, .specs-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .specs-table th {
+            width: 40%;
+            color: var(--dark-color);
+        }
+        
+        /* Pros and cons section */
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .pros, .cons {
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        
+        .pros {
+            background-color: rgba(76, 175, 80, 0.1);
+            border-left: 4px solid var(--success-color);
+        }
+        
+        .cons {
+            background-color: rgba(244, 67, 54, 0.1);
+            border-left: 4px solid var(--danger-color);
+        }
+        
+        .pros h2, .cons h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pros h2::before {
+            content: '✓';
+            color: var(--success-color);
+            margin-right: 0.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .cons h2::before {
+            content: '✗';
+            color: var(--danger-color);
+            margin-right: 0.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .pros ul, .cons ul {
+            list-style-type: none;
+        }
+        
+        .pros li, .cons li {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .pros li::before {
+            content: '✓';
+            color: var(--success-color);
+            position: absolute;
+            left: 0;
+        }
+        
+        .cons li::before {
+            content: '✗';
+            color: var(--danger-color);
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Conclusion section */
+        .conclusion-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+        
+        /* Recommendations */
+        .recommendations {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .recommended, .not-recommended {
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+        
+        .recommended {
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+        
+        .not-recommended {
+            background-color: rgba(244, 67, 54, 0.1);
+        }
+        
+        .recommended h3, .not-recommended h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .recommended h3::before {
+            content: '✓';
+            color: var(--success-color);
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .not-recommended h3::before {
+            content: '✗';
+            color: var(--danger-color);
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        /* CTA buttons */
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 992px) {
+            .model-hero {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            .horizontal-menu {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .pros-cons, .recommendations {
+                grid-template-columns: 1fr;
+            }
+            
+            .model-highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">LITE<span>ENDYRO</span></a>
+        <nav>
+            <ul class="horizontal-menu">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="pager1.html">Модели</a></li>
+                <li><a href="pager6.html">Помощь</a></li>
+                <li><a href="pager2.html">Назад</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="model-hero">
+            <div class="model-gallery">
+                <img src="img/k6r.png" alt="Kayo K6R">
+            </div>
+            
+            <div class="model-header">
+                <h1 class="model-title">Kayo K6R</h1>
+                <p class="model-subtitle">Универсальный дорожно-кроссовый мотоцикл для города и легкого бездорожья</p>
+                
+                <div class="model-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-icon">⚙️</div>
+                        <div class="highlight-text">
+                            <h4>Двигатель</h4>
+                            <p>250 см³, 30 л.с., жидкостное охлаждение</p>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-item">
+                        <div class="highlight-icon">🏁</div>
+                        <div class="highlight-text">
+                            <h4>Макс. скорость</h4>
+                            <p>~120 км/ч</p>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-item">
+                        <div class="highlight-icon">⚖️</div>
+                        <div class="highlight-text">
+                            <h4>Вес</h4>
+                            <p>~145 кг</p>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-item">
+                        <div class="highlight-icon">⛽</div>
+                        <div class="highlight-text">
+                            <h4>Бак</h4>
+                            <p>12 л (~300 км хода)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="specs-section">
+            <h2 class="section-title">Технические характеристики</h2>
+            <table class="specs-table">
+                <tr>
+                    <th>Тип двигателя</th>
+                    <td>1-цилиндровый, 4-тактный, жидкостного охлаждения</td>
+                </tr>
+                <tr>
+                    <th>Объем двигателя</th>
+                    <td>250 см³</td>
+                </tr>
+                <tr>
+                    <th>Мощность</th>
+                    <td>~30 л.с.</td>
+                </tr>
+                <tr>
+                    <th>Крутящий момент</th>
+                    <td>~25 Нм</td>
+                </tr>
+                <tr>
+                    <th>Коробка передач</th>
+                    <td>6-ступенчатая</td>
+                </tr>
+                <tr>
+                    <th>Сцепление</th>
+                    <td>Многодисковое в масляной ванне</td>
+                </tr>
+                <tr>
+                    <th>Подвеска (передняя)</th>
+                    <td>Телескопическая вилка, ход 220 мм</td>
+                </tr>
+                <tr>
+                    <th>Подвеска (задняя)</th>
+                    <td>Моноамортизатор, ход 210 мм</td>
+                </tr>
+                <tr>
+                    <th>Тормоза (передние)</th>
+                    <td>Дисковый 300 мм</td>
+                </tr>
+                <tr>
+                    <th>Тормоза (задние)</th>
+                    <td>Дисковый 220 мм</td>
+                </tr>
+                <tr>
+                    <th>Рама</th>
+                    <td>Стальная</td>
+                </tr>
+                <tr>
+                    <th>Размеры (Д×Ш×В)</th>
+                    <td>~2100 × 800 × 1200 мм</td>
+                </tr>
+                <tr>
+                    <th>Колесная база</th>
+                    <td>~1400 мм</td>
+                </tr>
+                <tr>
+                    <th>Высота по седлу</th>
+                    <td>~850 мм</td>
+                </tr>
+                <tr>
+                    <th>Сухой вес</th>
+                    <td>~145 кг</td>
+                </tr>
+                <tr>
+                    <th>Объем бака</th>
+                    <td>~12 л</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="pros-cons">
+            <div class="pros">
+                <h2>Преимущества</h2>
+                <ul>
+                    <li><strong>Универсальность</strong> – подходит как для города, так и для легкого бездорожья</li>
+                    <li><strong>Комфортная посадка</strong> – удобнее чисто кроссовых моделей</li>
+                    <li><strong>Достаточная мощность</strong> – хорошая динамика для своего класса</li>
+                    <li><strong>Увеличенный бак</strong> – запас хода до 300 км</li>
+                    <li><strong>Дорожная резина</strong> – лучшее сцепление на асфальте</li>
+                    <li><strong>Доступная цена</strong> – дешевле японских аналогов</li>
+                </ul>
+            </div>
+            
+            <div class="cons">
+                <h2>Недостатки</h2>
+                <ul>
+                    <li><strong>Ограниченная проходимость</strong> – не для серьезного бездорожья</li>
+                    <li><strong>Среднее качество сборки</strong> – возможны мелкие недочеты</li>
+                    <li><strong>Жестковатая подвеска</strong> – для российских дорог</li>
+                    <li><strong>Слабая дилерская сеть</strong> – сложности с обслуживанием</li>
+                    <li><strong>Простоватый дизайн</strong> – уступает чисто кроссовым моделям</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="conclusion-section">
+            <h2 class="section-title">Вывод</h2>
+            <p><strong>Kayo K6R</strong> – отличный выбор для тех, кто ищет недорогой универсальный мотоцикл для города и легкого бездорожья. Он сочетает в себе достаточную мощность, комфорт и практичность благодаря увеличенному топливному баку и удобной посадке. Хотя он не подойдет для экстремального использования, K6R предлагает отличное соотношение цены и качества для повседневной эксплуатации.</p>
+        </div>
+        
+        <div class="recommendations">
+            <div class="recommended">
+                <h3>Рекомендуется для:</h3>
+                <ul>
+                    <li>Городской езды</li>
+                    <li>Поездок по проселочным дорогам</li>
+                    <li>Начинающих мотоциклистов</li>
+                </ul>
+            </div>
+            
+            <div class="not-recommended">
+                <h3>Не рекомендуется для:</h3>
+                <ul>
+                    <li>Профессионального кросса</li>
+                    <li>Длительных скоростных поездок</li>
+                    <li>Экстремального бездорожья</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="cta-buttons">
+            <a href="pager2.html" class="btn btn-outline">← Назад к моделям</a>
+            <a href="#" class="btn">Заказать тест-драйв →</a>
+        </div>
+    </main>
+
+    <script>
+        // Add active class to current nav item
+        const navLinks = document.querySelectorAll('.horizontal-menu li a');
+        navLinks.forEach(link => {
+            if (link.href === window.location.href) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
